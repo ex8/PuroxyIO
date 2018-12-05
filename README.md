@@ -32,6 +32,21 @@ Services
 Payments
 [![Payments](https://i.imgur.com/YBblTyc.png "Payments")](https://i.imgur.com/YBblTyc.png "Payments")
 
+### Usage
+Clone it. I recommend a virtualenv using python3, you can so with this command (change ENV_NAME to any python environment name you like): 
+    `virtualenv -p python3 ENV_NAME`
+
+Then you need to install the dependencies like so:
+	`pip install -r requirements.txt`
+
+Then you can run the following commands to migrate and run the sever:
+	`python manage.py makemigrations`
+	`python manage.py migrate`
+	`python manage.py runserver`
+
+You should now be able to go to `localhost:8000`
+
+
 ### Main Technologies Used
 - Django (of course)
 - NGINX (reverse proxy)
