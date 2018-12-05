@@ -1,0 +1,43 @@
+{% extends 'main_base.html' %}
+
+{% block title %}
+    {{ post.title|title }} | Blog
+{% endblock title %}
+
+{% block seo %}
+    {{ block.super }}
+{% endblock seo %}
+
+{% block stylesheets %}
+    {{ block.super }}
+{% endblock stylesheets %}
+
+{% block content %}
+    <main role="main" id="content">
+        <h1>{{ post.title|title }}</h1>
+        <smalltext>
+            <i class="fa fa-calendar"></i> Date: {{ post.created|date:'m-d-Y' }} |
+            <i class="fa fa-user"></i> Author: {{ post.user|title }}
+        </smalltext>
+
+        <div class="tt-icon-box">
+            {{ post.body|safe }}
+        </div>
+    </main>
+
+    <aside role="complementary" id="sidebar" class="right_sidebar">
+        <div class="sidebar-widget">
+            <h4>Useful Links</h4>
+            <div class="textwidget">
+                <ul class="list list1">
+                    <li><a href="{% url 'blog:list' %}">Blog Posts</a></li>
+                    <li><a href="{% url 'main:about' %}">About Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </aside>
+{% endblock content %}
+
+{% block javascript %}
+    {{ block.super }}
+{% endblock javascript %}

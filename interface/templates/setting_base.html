@@ -1,0 +1,69 @@
+{% load static %}
+
+<html>
+<head>
+    <meta charset="utf8"/>
+    <title>{% block title %}{% endblock title %} | PuroxyIO</title>
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
+
+    {% block stylesheets %}
+        <link href="{% static 'css/style.css' %}" rel="stylesheet">
+        <link href="{% static 'css/karma-teal-grey.css' %}" rel="stylesheet">
+        <link href="{% static 'css/secondary-teal-grey.css' %}" rel="stylesheet">
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans|Lato'
+              rel='stylesheet' type='text/css'>
+        <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
+        <link href="{% static 'fontawesome/css/all.css' %}" rel="stylesheet">
+        <link href="{% static 'fontawesome/css/v4-shims.css' %}" rel="stylesheet">
+        <link href="{% static 'css/mobile.css' %}" rel="stylesheet">
+    {% endblock stylesheets %}
+</head>
+
+<body>
+<div id="tt-wide-layout" class="content-style-default">
+    <div id="wrapper">
+        {% include 'header.html' %}
+        <div id="main">
+            <div class="main-area">
+                <nav role="navigation" id="sub_nav">
+                    <ul class="sub-menu">
+                        <li><a href="{% url 'interface:settings' %}">General</a></li>
+                        <li><a href="{% url 'interface:password_change' %}">Password</a></li>
+                    </ul>
+                </nav>
+                <main role="main" id="content" class="content-left-nav">
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="karma_notify message_{{ message.tags }}"
+                                 style="font-size: 13px;">
+                                <p>{{ message|safe }}</p>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+
+                    {% block content %}
+                    {% endblock content %}
+                </main>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br class="clear"/>
+<br class="clear"/>
+<br class="clear"/>
+<br class="clear"/>
+
+{% include 'footer.html' %}
+
+{% block javascript %}
+    <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/custom-main.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.ui.core.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.ui.widget.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.ui.tabs.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.prettyPhoto.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/superfish.js' %}"></script>
+{% endblock javascript %}
+</body>
+</html>

@@ -1,0 +1,186 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Order
+{% endblock title %}
+
+{% block stylesheets %}
+    {{ block.super }}
+{% endblock stylesheets %}
+
+{% block content %}
+    <h2>Order <span class="smalltext">here you can deploy a new service</span></h2>
+
+    {% if not disabled %}
+    <div class="tabs-area">
+        <ul class="tabset">
+            <li><a href="#hosting" class="tab"><span>Web Hosting</span></a></li>
+            <li><a href="#linux-vps" class="tab"><span>Linux VPS</span></a></li>
+            <li><a href="#windows-vps" class="tab"><span>Windows VPS</span></a></li>
+            <li><a href="#onshore-dedi" class="tab"><span>Onshore Dedicated Servers</span></a></li>
+            <li><a href="#offshore-dedi" class="tab"><span>Offshore Dedicated Servers</span></a></li>
+        </ul>
+
+        <br class="clear"/>
+
+        <!-- WEB HOSTING TAB -->
+        <div id="hosting" class="tab-box">
+            {% for web1, web2 in web %}
+                <div class="one_half tt-column">
+                    <div class="tt-icon-box">
+                <span class="fa-stack fa-3x"><i class="fa fa-circle fa-stack-2x" style="color:#E15258;"></i>
+                <i class="fa fa-briefcase fa-stack-1x fa-inverse"></i></span>
+                        <h2><u>{{ web1.name|title }} - ${{ web1.price }}/month</u></h2>
+                        <ul class="no-bullets">
+                            <li>{{ web1.description|linebreaks }}</li>
+                        </ul>
+                        <a href="{% url 'order:detail' web1.slug %}"
+                           class="ka_button small_button small_tealgrey">Order</a>
+                    </div>
+                </div>
+                <div class="one_half_last tt-column">
+                    <div class="tt-icon-box">
+                <span class="fa-stack fa-3x"><i class="fa fa-circle fa-stack-2x" style="color:#E15258;"></i>
+                <i class="fa fa-briefcase fa-stack-1x fa-inverse"></i></span>
+                        <h2><u>{{ web2.name|title }} - ${{ web2.price }}/month</u></h2>
+                        <ul class="no-bullets">
+                            <li>{{ web2.description|linebreaks }}</li>
+                        </ul>
+                        <a href="{% url 'order:detail' web2.slug %}"
+                           class="ka_button small_button small_tealgrey">Order</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <!-- LINUX VPS TAB -->
+        <div id="linux-vps" class="tab-box">
+            {% for lv1, lv2 in linux_vps %}
+                <div class="one_half tt-column">
+                    <div class="tt-icon-box">
+                <span class="fa-stack fa-3x"><i class="fa fa-circle fa-stack-2x" style="color:#B8B8FF;"></i>
+                <i class="fa fa-linux fa-stack-1x fa-inverse"></i></span>
+                        <h2><u>{{ lv1.name }} - ${{ lv1.price }}/month</u></h2>
+                        <ul class="no-bullets">
+                            <li>{{ lv1.description|linebreaks }}</li>
+                        </ul>
+                        <a href="{% url 'order:detail' lv1.slug %}"
+                           class="ka_button small_button small_tealgrey">Order</a>
+                    </div>
+                </div>
+                <div class="one_half_last tt-column">
+                    <div class="tt-icon-box">
+                <span class="fa-stack fa-3x"><i class="fa fa-circle fa-stack-2x" style="color:#B8B8FF;"></i>
+                <i class="fa fa-linux fa-stack-1x fa-inverse"></i></span>
+                        <h2><u>{{ lv2.name }} - ${{ lv2.price }}/month</u></h2>
+                        <ul class="no-bullets">
+                            <li>{{ lv2.description|linebreaks }}</li>
+                        </ul>
+                        <a href="{% url 'order:detail' lv2.slug %}"
+                           class="ka_button small_button small_tealgrey">Order</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <!-- WINDOWS VPS TAB -->
+        <div id="windows-vps" class="tab-box">
+            {% for wv1, wv2 in window_vps %}
+                <div class="one_half tt-column">
+                    <div class="tt-icon-box">
+                <span class="fa-stack fa-3x"><i class="fa fa-circle fa-stack-2x" style="color:#53BBB4;"></i>
+                <i class="fa fa-windows fa-stack-1x fa-inverse"></i></span>
+                        <h2><u>{{ wv1.name }} - ${{ wv1.price }}/month</u></h2>
+                        <ul class="no-bullets">
+                            <li>{{ wv1.description|linebreaks }}</li>
+                        </ul>
+                        <a href="{% url 'order:detail' wv1.slug %}"
+                           class="ka_button small_button small_tealgrey">Order</a>
+                    </div>
+                </div>
+                <div class="one_half_last tt-column">
+                    <div class="tt-icon-box">
+                <span class="fa-stack fa-3x"><i class="fa fa-circle fa-stack-2x" style="color:#53BBB4;"></i>
+                <i class="fa fa-windows fa-stack-1x fa-inverse"></i></span>
+                        <h2><u>{{ wv2.name }} - ${{ wv2.price }}/month</u></h2>
+                        <ul class="no-bullets">
+                            <li>{{ wv2.description|linebreaks }}</li>
+                        </ul>
+                        <a href="{% url 'order:detail' wv2.slug %}"
+                           class="ka_button small_button small_tealgrey">Deploy</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <!-- ONSHORE DEDICATED SERVER TAB -->
+        <div id="onshore-dedi" class="tab-box">
+            {% for on1, on2 in onshore %}
+                <div class="one_half tt-column">
+                    <div class="tt-icon-box">
+                <span class="fa-stack fa-3x"><i class="fa fa-circle fa-stack-2x" style="color:#F9845B;"></i>
+                <i class="fa fa-linux fa-stack-1x fa-inverse"></i></span>
+                        <h2><u>{{ on1.name }} - ${{ on1.price }}/month</u></h2>
+                        <ul class="no-bullets">
+                            <li>{{ on1.description|linebreaks }}</li>
+                        </ul>
+                        <a href="{% url 'order:detail' on1.slug %}"
+                           class="ka_button small_button small_tealgrey">Order</a>
+                    </div>
+                </div>
+                <div class="one_half_last tt-column">
+                    <div class="tt-icon-box">
+                <span class="fa-stack fa-3x"><i class="fa fa-circle fa-stack-2x" style="color:#F9845B;"></i>
+                <i class="fa fa-linux fa-stack-1x fa-inverse"></i></span>
+                        <h2><u>{{ on2.name }} - ${{ on2.price }}/month</u></h2>
+                        <ul class="no-bullets">
+                            <li>{{ on2.description|linebreaks }}</li>
+                        </ul>
+                        <a href="{% url 'order:detail' on2.slug %}"
+                           class="ka_button small_button small_tealgrey">Order</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <!-- OFFSHORE DEDICATED SERVER TAB -->
+        <div id="offshore-dedi" class="tab-box">
+            {% for of1, of2 in offshore %}
+                <div class="one_half tt-column">
+                    <div class="tt-icon-box">
+                <span class="fa-stack fa-3x"><i class="fa fa-circle fa-stack-2x" style="color:#665885;"></i>
+                <i class="fa fa-linux fa-stack-1x fa-inverse"></i></span>
+                        <h2><u>{{ of1.name }} - ${{ of1.price }}/month</u></h2>
+                        <ul class="no-bullets">
+                            <li>{{ of1.description|linebreaks }}</li>
+                        </ul>
+                        <a href="{% url 'order:detail' of1.slug %}"
+                           class="ka_button small_button small_tealgrey">Order</a>
+                    </div>
+                </div>
+                <div class="one_half_last tt-column">
+                    <div class="tt-icon-box">
+                <span class="fa-stack fa-3x"><i class="fa fa-circle fa-stack-2x" style="color:#665885;"></i>
+                <i class="fa fa-linux fa-stack-1x fa-inverse"></i></span>
+                        <h2><u>{{ of2.name }} - ${{ of2.price }}/month</u></h2>
+                        <ul class="no-bullets">
+                            <li>{{ of2.description|linebreaks }}</li>
+                        </ul>
+                        <a href="{% url 'order:detail' of2.slug %}"
+                           class="ka_button small_button small_tealgrey">Order</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% else %}
+            <div class="karma_notify message_blue" style="font-size: 13px;">
+                <p>You are unable to order a new service at this time.</p>
+            </div>
+    {% endif %}
+{% endblock content %}
+
+{% block javascript %}
+    {{ block.super }}
+{% endblock javascript %}

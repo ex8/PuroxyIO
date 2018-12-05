@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    API
+{% endblock title %}
+
+{% block stylesheets %}
+    {{ block.super }}
+{% endblock stylesheets %}
+
+{% block content %}
+    <div class="title-content-left">
+        <h2>API <span class="smalltext">overview of interface requests</span></h2>
+    </div>
+    <br class="clear"/>
+    <div class="one_third tt-column">
+        <div class="tt-icon-box">
+            <h1>{{ count }}</h1>
+            <h4>Total Request{{ count|pluralize }}</h4>
+        </div>
+    </div>
+    <div class="one_third tt-column">
+        <div class="tt-icon-box">
+            <h1>{{ success }}</h1>
+            <h4>Completed Request{{ success|pluralize }}</h4>
+        </div>
+    </div>
+    <div class="one_third_last tt-column">
+        <div class="tt-icon-box">
+            <h1>{{ fail }}</h1>
+            <h4>Failed Request{{ fail|pluralize }}</h4>
+        </div>
+    </div>
+
+    <br class="clear"/>
+    <div class="karma_notify message_yellow" style="font-size: 13px;">
+        <p>
+            You can learn more on how to use our API by traversing through our documentation
+            found on our <a href="https://github.com/ex8/PuroxyIO" target="_blank">GitHub</a>
+            page. We plan to add many more features to the API as development progresses.
+        </p>
+    </div>
+
+    <h3>Your Latest Requests</h3>
+    {% for a in apis %}
+        <div class="tt-icon-box matt-width-fix">
+            <div class="one_fourth tt-column">
+                <strong>Date Requested</strong> <br/>
+                {{ a.date_requested|date:'m-d-y - h:i A' }}
+            </div>
+            <div class="one_fourth tt-column">
+                <strong>Endpoint Name</strong> <br/>
+                {{ a.endpoint_name|title }}
+            </div>
+            <div class="one_fourth tt-column">
+                <strong>Status</strong> <br/>
+                {% if a.completed %}
+                    <span class="label-button label-green">COMPLETED</span>
+                {% else %}
+                    <span class="label-button label-red">ERROR</span>
+                {% endif %}
+            </div>
+            <div class="one_fourth_last tt-column">
+                <a href="{% url 'api:detail' a.uuid %}" class="ka_button small_button small_tealgrey">
+                    <span class="smalltext">View</span>
+                </a>
+            </div>
+        </div>
+    {% empty %}
+        <div class="karma_notify message_blue" style="font-size: 13px;">
+            <p>You currently have no API requests</p>
+        </div>
+    {% endfor %}
+    {% include 'pagination.html' with page=apis %}
+{% endblock content %}
+
+
+{% block javascript %}
+    {{ block.super }}
+{% endblock javascript %}

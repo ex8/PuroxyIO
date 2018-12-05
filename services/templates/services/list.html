@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Services
+{% endblock title %}
+
+{% block stylesheets %}
+    {{ block.super }}
+{% endblock stylesheets %}
+
+{% block content %}
+    <div class="title-content-left">
+        <h2>
+            Services <span class="smalltext">here you can view your orders with us</span>
+        </h2>
+    </div>
+
+    <br class="clear"/>
+    <br class="clear"/>
+
+    {% for service in services %}
+        <div class="tt-icon-box matt-width-fix">
+            <div class="one_fifth tt-column">
+                <strong>Hostname</strong>
+                <br/>
+                <span class="smalltext">{{ service.hostname }}</span>
+            </div>
+            <div class="one_fifth tt-column">
+                <strong>Main IP Address</strong>
+                <br/>
+                <span class="smalltext">{{ service.ip_address }}</span>
+            </div>
+            <div class="one_fifth tt-column">
+                <strong>Operating System</strong>
+                <br/>
+                <span class="smalltext">{{ service.os }}</span>
+            </div>
+            <div class="one_fifth tt-column">
+                <strong>Created</strong>
+                <br/>
+                <span class="smalltext">{{ service.created|date:'m-d-y | h:i A' }}</span>
+            </div>
+            <div class="one_fifth_last tt-column">
+                <a href="{% url 'services:detail' service.uuid %}"
+                   class="ka_button small_button small_tealgrey"><i
+                        class="fa fa-cogs"></i><smalltext>Manage</smalltext></a>
+            </div>
+        </div>
+    {% empty %}
+        <div class="karma_notify message_blue" style="font-size: 13px;">
+            <p>
+                You currently have no services with us.
+                You can <a href="{% url 'order:list' %}" class="no-underline">order</a> a new service today.
+            </p>
+        </div>
+    {% endfor %}
+    {% include 'pagination.html' with page=services %}
+{% endblock content %}
+
+{% block javascript %}
+    {{ block.super }}
+{% endblock javascript %}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    500
+{% endblock title %}
+
+{% block stylesheets %}
+    {{ block.super }}
+{% endblock stylesheets %}
+
+{% block content %}
+    <div class="four_error">
+        <div class="four_message">
+            <div class="tt-icon-box">
+                <h1 class="four_o_four">Oops</h1>
+                Our apologies, it appears the request you have attempted caused an error.
+                We have been notified and will begin investigating the issue.
+                Here are some links you may find useful:
+                <ul class="no-bullets">
+                    <li><a href="{% url 'main:home' %}">Home</a></li>
+                    <li><a href="{% url 'interface:dashboard' %}">Interface</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block javascript %}
+    {{ block.super }}
+{% endblock javascript %}

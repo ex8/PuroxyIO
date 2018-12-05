@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Invoice - {{ invoice.order.service.hostname }}
+{% endblock title %}
+
+{% block stylesheets %}
+    {{ block.super }}
+{% endblock stylesheets %}
+
+{% block content %}
+    <div class="title-content-left">
+        <h2>
+            Invoice ID - {{ invoice.uuid }}
+            <span class="smalltext">here you can manage your bill</span>
+        </h2>
+    </div>
+
+    <div class="three_fourth tt-column">
+        <div class="tt-icon-box">
+            <div align="left">
+                <ul class="no-bullets">
+                    <li><strong>Order ID:</strong> {{ invoice.order.uuid }}</li>
+                    <li><strong>Product:</strong> {{ invoice.order.product.name }}</li>
+                    <li><strong>Service:</strong> {{ invoice.order.service.hostname }}</li>
+                    <li><strong>Invoice Date:</strong> {{ invoice.date|date:'m-d-y - h:i A' }}</li>
+                    <li><strong>Invoice Due Date:</strong> {{ invoice.due_date|date:'m-d-y - h:i A' }}</li>
+                    {% if invoice.paid %}
+                        <li><strong>Date Paid:</strong> {{ invoice.date_paid|date:'m-d-y - h:i A' }}</li>
+                        <li><strong>Payment Method:</strong> {{ invoice.method }}</li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+        <h4><u>Invoice Items</u></h4>
+        {% for item in invoice.items.all %}
+            <div class="tt-icon-box">
+                <div align="left">
+                    {{ item.description }} - <strong>${{ item.amount }}</strong> ({{ item.cycle|title }})
+                </div>
+            </div>
+        {% endfor %}
+    <span class="smalltext">
+        Please note a $5.00 late fee will be added to your invoice if it is <strong>one</strong> day overdue.
+    </span>
+    </div>
+
+    <div class="one_fourth_last tt-column">
+        <div class="tt-icon-box">
+            <h2>Amount</h2>
+            <h4>${{ invoice.get_total_cost }}</h4>
+        </div>
+        <div class="tt-icon-box">
+            <h2>Status</h2>
+            {% if invoice.paid %}
+                <span class="label-button label-green">PAID</span>
+            {% else %}
+                <span class="label-button label-red">UNPAID</span>
+            {% endif %}
+        </div>
+        {% if not invoice.paid %}
+            <div class="tt-icon-box">
+                <h2>Pay Invoice</h2>
+                <a href="{% url 'payments:list' invoice.uuid %}" class="ka_button small_button small_tealgrey">
+                    Pay Invoice
+                </a>
+            </div>
+        {% endif %}
+    </div>
+{% endblock content %}
+
+{% block javascript %}
+    {{ block.super }}
+{% endblock javascript %}

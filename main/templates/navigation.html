@@ -1,0 +1,46 @@
+{% load staticfiles %}
+<div class="header-overlay">
+    <div class="header-area">
+        <a href="{% url 'main:home' %}" class="logo">
+            <img src="{% static 'images/puroxylogo.png' %}" alt="Puroxy"
+                 class="tt-retina-logo" width="154" height="57"
+            />
+        </a>
+        <nav role="navigation">
+            <ul id="menu-main-nav">
+                <li>
+                    <a href="{% url 'main:hosting' %}">
+                        <span>
+                            <strong>Web Hosting</strong>
+                            <span class="navi-description">everything you need</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'main:linux_vps' %}">
+                        <span>
+                            <strong>Virtual Servers</strong>
+                            <span class="navi-description">cloud based solutions</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'main:onshore_dedi' %}">
+                        <span>
+                            <strong>Dedicated Servers</strong>
+                            <span class="navi-description">enterprise based solutions</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'main:about' %}">
+                        <span>
+                            <strong>About Us</strong>
+                            <span class="navi-description">who we are</span>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>

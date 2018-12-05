@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    New Ticket
+{% endblock title %}
+
+{% block stylesheets %}
+    {{ block.super }}
+{% endblock stylesheets %}
+
+{% block content %}
+    <div class="title-content-left">
+        <h2>
+            Create New Ticket
+            <span class="smalltext">here you can safely contact our support team</span>
+        </h2>
+    </div>
+
+    <br class="clear"/>
+    <br class="clear"/>
+
+    <form method="post" action=".">
+        <ul class="input-list style-1 style-2 clearfix no-bullets">
+            <li>{{ form.subject }}</li>
+            <li>{{ form.priority }}</li>
+            <li>{{ form.service }}</li>
+            <li>{{ form.message }}</li>
+            {% csrf_token %}
+        </ul>
+        <div align="right">
+            <button type="submit" class="ka_button small_button small_tealgrey">Open Ticket</button>
+        </div>
+    </form>
+{% endblock content %}
+
+{% block javascript %}
+    {{ block.super }}
+{% endblock javascript %}

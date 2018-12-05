@@ -1,0 +1,167 @@
+{% extends 'main_base.html' %}
+
+{% block title %}
+    Web Hosting
+{% endblock title %}
+
+{% block seo %}
+    <meta name="description"
+          content="Web Hosting packages come equipped with SSD, Premium Bandwidth, and many other features!"/>
+    <meta name="keywords" lang="en" content="puroxyio, web hosting, hosting, cpanel hosting, whm hosting, bitcoin,
+          bitcoin cash, ethereum, bitcoin hosting, bitcoin cash hosting, ethereum cpanel hosting, crypto web hosting"/>
+    <meta name="robots" content="index, follow"/>
+    <meta name="page-topic"
+          content="puroxyio, web hosting, hosting, cpanel hosting, whm hosting"/>
+    <meta name="author" content="Puroxy.io"/>
+    <meta name="copyright" content="Puroxy.io"/>
+    <meta name="revisit-after" content="7 days"/>
+    <meta http-equiv="content-language" content="en"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+{% endblock seo %}
+
+{% block stylesheets %}
+    {{ block.super }}
+{% endblock stylesheets %}
+
+{% block content %}
+    <main role="main" id="content" class="content_full_width">
+        <div class="callout-wrap">
+            <div align="center">
+                <span>
+                    Our variety of <i>web hosting</i> packages allows
+                    you to select the right level of service for your specific needs.
+                </span>
+            </div>
+        </div>
+
+        {% for p1, p2 in products %}
+            <div class="one_half tt-column">
+                <div class="tt-icon-box">
+                    <span class="fa-stack fa-3x">
+                        <i class="fa fa-circle fa-stack-2x" style="color:#E15258;"></i>
+                        <i class="fa fa-briefcase fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <h2><u>{{ p1.name|title }} - ${{ p1.price }}/month</u></h2>
+                    <ul class="no-bullets">
+                        <li>{{ p1.description|linebreaks }}</li>
+                    </ul>
+                    <a href="{% url 'order:detail' p1.slug %}"
+                       class="ka_button small_button small_tealgrey">Order</a>
+                </div>
+            </div>
+            <div class="one_half_last tt-column">
+                <div class="tt-icon-box">
+                    <span class="fa-stack fa-3x">
+                        <i class="fa fa-circle fa-stack-2x" style="color:#E15258;"></i>
+                        <i class="fa fa-briefcase fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <h2><u>{{ p2.name|title }} - ${{ p2.price }}/month</u></h2>
+                    <ul class="no-bullets">
+                        <li>{{ p2.description|linebreaks }}</li>
+                    </ul>
+                    <a href="{% url 'order:detail' p2.slug %}"
+                       class="ka_button small_button small_tealgrey">Order</a>
+                </div>
+            </div>
+        {% empty %}
+            <div class="tt-icon-box">
+                <span class="fa-stack fa-3x">
+                    <i class="fa fa-circle fa-stack-2x" style="color:#B4D3E8;"></i>
+                    <i class="fa fa-sad-cry fa-stack-1x fa-inverse"></i>
+                </span>
+                <h2>There are currently no available products</h2>
+            </div>
+        {% endfor %}
+
+        <div class="one_third tt-column">
+            <div class="tt-icon-box">
+                <span class="fa-stack fa-4x">
+                    <i class="fa fa-circle fa-stack-2x" style="color:#39ADD1;"></i>
+                    <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                </span>
+                <h3>Emails</h3>
+                <p>
+                    Create and manage your own email accounts <i>(you@yourdomain.com)</i>.
+                    Features include forwarding rules, filters, POP3 & IMAP
+                    support, and spam protection.
+                </p>
+            </div>
+        </div>
+        <div class="one_third tt-column">
+            <div class="tt-icon-box">
+                <span class="fa-stack fa-4x">
+                    <i class="fa fa-circle fa-stack-2x" style="color:#E0AB18;"></i>
+                    <i class="fa fa-cloud-upload fa-stack-1x fa-inverse"></i>
+                </span>
+                <h3>Backups</h3>
+                <p>
+                    Easily download and upload full backups in your cPanel account
+                    with the click of a button. We also deploy routine
+                    backups on our end for your added benefit.
+                </p>
+            </div>
+        </div>
+        <div class="one_third_last tt-column">
+            <div class="tt-icon-box">
+                <span class="fa-stack fa-4x">
+                    <i class="fa fa-circle fa-stack-2x" style="color:#2570A8;"></i>
+                    <i class="fa fa-shield fa-stack-1x fa-inverse"></i>
+                </span>
+                <h3>Security</h3>
+                <p>
+                    Our technology stack creates websites with the appropriate
+                    resources and isolates them to ensure performance and
+                    to further mitigate potential threats and issues.
+                </p>
+            </div>
+        </div>
+        <div class="one_third tt-column">
+            <div class="tt-icon-box">
+                <span class="fa-stack fa-4x">
+                    <i class="fa fa-circle fa-stack-2x" style="color:#913B53;"></i>
+                    <i class="fa fa-expand fa-stack-1x fa-inverse"></i>
+                </span>
+                <h3>Scalability</h3>
+                <p>
+                    Start with the level of service
+                    you’re comfortable with, and request to move to a
+                    more powerful and bigger package as your website continuely grows.
+                    Scalability and flexibility is simple and easy from
+                    within our network.
+                </p>
+            </div>
+        </div>
+
+        <div class="one_third tt-column">
+            <div class="tt-icon-box">
+                <span class="fa-stack fa-4x">
+                    <i class="fa fa-circle fa-stack-2x" style="color:#87C442;"></i>
+                    <i class="fa fa-globe fa-stack-1x fa-inverse"></i>
+                </span>
+                <h3>Domains</h3>
+                <p>
+                    Set up subdomains, add-on domains, parked domains,
+                    and redirect your visitors as necessary.
+                    From your cPanel, navigate to the simple DNS Zone Editor
+                    or Advanced DNS Zone Editor to explore further configurable options.
+                </p>
+            </div>
+        </div>
+        <div class="one_third_last tt-column">
+            <div class="tt-icon-box">
+                <span class="fa-stack fa-4x"><i class="fa fa-circle fa-stack-2x" style="color:#CD9BFF;"></i><i
+                        class="fa fa-lock fa-stack-1x fa-inverse"></i></span>
+                <h3>Privacy</h3>
+                <p>
+                    Configure password-protected directories, IP address approvals and denials, SSL/TLS, and GnuPG key
+                    settings to restrict access. Protect your site with added security by purchasing server management
+                    during checkout.
+                </p>
+            </div>
+        </div>
+    </main>
+{% endblock content %}
+
+{% block javascript %}
+    {{ block.super }}
+{% endblock javascript %}

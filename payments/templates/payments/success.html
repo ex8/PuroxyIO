@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Payments - Success
+{% endblock title %}
+
+{% block stylesheets %}
+    {{ block.super }}
+{% endblock stylesheets %}
+
+{% block content %}
+    <div class="tt-icon-box">
+            <span class="fa-stack fa-4x">
+                <i class="fa fa-circle fa-stack-2x" style="color:#51B46D;"></i>
+                <i class="fa fa-thumbs-o-up fa-stack-1x fa-inverse"></i>
+            </span>
+        <h6>Your payment using {{ gateway.name }} was successful.</h6>
+        <h6>Please allow for the funds to fully confirm in order for the invoice to be marked as paid.</h6>
+        <a href="{% url 'invoices:detail' invoice.uuid %}" class="ka_button small_button small_tealgrey">
+            <i class="fa fa-credit-card-alt"></i> Invoice
+        </a>
+    </div>
+{% endblock content %}
+
+{% block javascript %}
+    {{ block.super }}
+{% endblock javascript %}

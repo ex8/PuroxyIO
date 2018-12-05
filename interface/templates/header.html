@@ -1,0 +1,72 @@
+{% load static %}
+
+<header role="banner" id="header">
+    <div class="top-block">
+        <div class="top-holder">
+            <div class="toolbar-left">
+                <ul>
+                    <li><a href="{% url 'main:home' %}">Home</a></li>
+                    <li>
+                        <a href="{% url 'interface:dashboard' %}">Interface</a>
+                        <ul class="sub-menu">
+                            <li><a href="{% url 'services:list' %}"><span>Services</span></a></li>
+                            <li><a href="{% url 'order:list' %}"><span>Order</span></a></li>
+                            <li><a href="{% url 'invoices:list' %}"><span>Invoices</span></a></li>
+                            <li><a href="{% url 'tickets:list' %}"><span>Tickets</span></a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="toolbar-right">
+                <ul>
+                    <li>
+                        {% if request.user.is_authenticated %}
+                            <li><a href="{% url 'interface:dashboard' %}"><i
+                                    class="fa fa-user"></i> {{ request.user.first_name }}</a></li>
+                            <li><a href="{% url 'interface:logout' %}">Logout</a></li>
+                        {% else %}
+                            <li><a href="{% url 'interface:login' %}">Login</a></li>
+                            <li><a href="{% url 'interface:register' %}">Register</a></li>
+                        {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-holder tt-logo-center">
+        <div class="header-overlay">
+            <div class="header-area">
+                <a href="{% url 'main:home' %}" class="logo"><img
+                        src="{% static 'images/puroxylogo.png' %}" alt="Puroxy"
+                        class="tt-retina-logo" width="154" height="57"/></a>
+            </div>
+        </div>
+    </div>
+
+    {% if request.user.is_authenticated %}
+        <div class="top-block">
+            <div class="top-holder">
+                <div class="toolbar-left">
+                    <ul>
+                        <li><a href="{% url 'interface:dashboard' %}"><i class="fa fa-home"></i> Home</a></li>
+                        <li><a href="{% url 'services:list' %}"><i class="fa fa-cloud"></i> Services</a>
+                        </li>
+                        <li><a href="{% url 'order:list' %}"><i class="fa fa-shopping-cart"></i>
+                            Order</a></li>
+                        <li><a href="{% url 'invoices:list' %}"><i class="fa fa-credit-card"></i>
+                            Invoices</a></li>
+                        <li><a href="{% url 'tickets:list' %}"><i class="fa fa-ticket"></i> Tickets</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="toolbar-right">
+                    <ul>
+                        <li><a href="{% url 'api:list' %}"><i class="fa fa-bolt"></i> API</a></li>
+                        <li><a href="{% url 'interface:settings' %}"><i class="fa fa-cog"></i> Settings</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</header>

@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Dashboard
+{% endblock title %}
+
+{% block stylesheets %}
+    {{ block.super }}
+{% endblock stylesheets %}
+
+{% block content %}
+    <h2>Welcome, {{ request.user.first_name }}!</h2>
+    <div class="one_third tt-column">
+        <a href="{% url 'services:list' %}">
+            <div class="tt-icon-box">
+            <span class="fa-stack fa-4x">
+                <i class="fa fa-circle fa-stack-2x" style="color:#B8B8FF;"></i>
+                <i class="fa fa-cloud fa-stack-1x fa-inverse"></i></span>
+                <h2>{{ orders_count }} Service{{ orders_count|pluralize }}</h2>
+            </div>
+        </a>
+    </div>
+    <div class="one_third tt-column">
+        <a href="{% url 'invoices:list' %}">
+            <div class="tt-icon-box">
+            <span class="fa-stack fa-4x">
+                <i class="fa fa-circle fa-stack-2x" style="color:#8DEBFF;"></i>
+                <i class="fa fa-credit-card fa-stack-1x fa-inverse"></i></span>
+                <h2>{{ invoices_count }} Invoice{{ invoices_count|pluralize }}</h2>
+            </div>
+        </a>
+    </div>
+    <div class="one_third_last tt-column">
+        <a href="{% url 'tickets:list' %}">
+            <div class="tt-icon-box">
+            <span class="fa-stack fa-4x">
+                <i class="fa fa-circle fa-stack-2x" style="color:#E88D88;"></i>
+                <i class="fa fa-ticket fa-stack-1x fa-inverse"></i></span>
+                <h2>{{ tickets_count }} Ticket{{ tickets_count|pluralize }}</h2>
+            </div>
+        </a>
+    </div>
+
+    <br class="clear"/>
+
+    <div class="row">
+        <div class="one_half tt-column">
+            <h3>Overdue Invoices</h3>
+            <div class="tt-icon-box">
+                {% if invoices_count %}
+                    You have <strong>{{ invoices_count }}</strong> unpaid
+                    invoice{{ invoices_count|pluralize }} with a total
+                    balance due of <strong>${{ amount_due }}</strong>. Pay now
+                    to avoid any service interruptions.
+                {% else %}
+                    <div class="karma_notify message_green" style="font-size: 13px;">
+                        <p>You have no unpaid invoices</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="one_half_last tt-column">
+            <h3>Recent API Requests</h3>
+            <div class="tt-icon-box">
+                {% if apis %}
+                    {% for api in apis %}
+                        <b>Endpoint Name:</b> {{ api.endpoint_name }} |
+                        <b>Date:</b> {{ api.date_requested|date:'m-d-y' }} |
+                        {% if api.completed %}
+                            <span class="label-button label-green">COMPLETED</span>
+                        {% else %}
+                            <span class="label-button label-red">ERROR</span>
+                        {% endif %}
+                        <br/>
+                    {% endfor %}
+                {% else %}
+                    <div class="karma_notify message_blue" style="font-size: 13px;">
+                        <p>You have no recent API requests</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <br class="clear"/>
+
+    <div class="row">
+        <div class="one_third tt-column">
+            <h3>Network Status</h3>
+            <div class="tt-icon-box">
+                {% for e1, e2 in statuses %}
+                    <div class="title-content-left">{{ e2 }}</div>
+                    <div class="button-content-right">
+                        <span class="label-button label-{{ network.label }}">
+                            {{ network.status }}
+                        </span>
+                    </div>
+                    <br />
+                {% endfor %}
+            </div>
+        </div>
+        <div class="one_third tt-column">
+            <h3>Orders</h3>
+            <div class="tt-icon-box">
+                {% for order in orders %}
+                    <div class="title-content-left">
+                        {{ order.service.hostname }}
+                    </div>
+                    <div class="button-content-right">
+                        <span class="label-button label-{{ order.get_order_status_label.label }}">
+                            {{ order.get_order_status_label.status }}
+                        </span>
+                    </div>
+                    <br/>
+                {% empty %}
+                    <div class="karma_notify message_blue" style="font-size: 13px;">
+                        <p>You have no orders</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="one_third_last tt-column">
+            <h3>Social</h3>
+            <ul class="social_icons tt_vector_social_icons tt_vector_social_color tt_no_social_title tt_image_social_icons">
+                <li>
+                    <a href="https://twitter.com/PuroxyIO" target="_blank"
+                       class="twitter" title="Twitter">Twitter</a>
+                </li>
+                <li>
+                    <a href="https://www.facebook.com/PuroxyII" target="_blank"
+                       class="facebook" title="Facebook">Facebook</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block javascript %}
+    {{ block.super }}
+{% endblock javascript %}

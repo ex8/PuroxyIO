@@ -1,0 +1,76 @@
+{% load static %}
+<html>
+<head>
+    <meta charset="utf8"/>
+    <title>{% block title %}{% endblock title %} | PuroxyIO</title>
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
+
+    {% block seo %}
+    {% endblock seo %}
+
+    {% block stylesheets %}
+        <link href="{% static 'css/style.css' %}" rel="stylesheet">
+        <link href="{% static 'css/karma-teal-grey.css' %}" rel="stylesheet">
+        <link href="{% static 'css/secondary-teal-grey.css' %}" rel="stylesheet">
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans|Lato' rel='stylesheet' type='text/css'>
+        <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
+        <link href="{% static 'fontawesome/css/all.css' %}" rel="stylesheet">
+        <link href="{% static 'fontawesome/css/v4-shims.css' %}" rel="stylesheet">
+        <link href="{% static 'css/mobile.css' %}" rel="stylesheet">
+    {% endblock stylesheets %}
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111455248-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'UA-111455248-1');
+    </script>
+</head>
+<body>
+<div id="tt-wide-layout" class="content-style-default">
+    <div id="wrapper">
+        <header role="banner" id="header">
+            <div class="top-block">
+                <div class="top-holder">
+                    {% include 'top-nav.html' %}
+                </div>
+            </div>
+            <div class="header-holder tt-logo-center">
+                {% include 'navigation.html' %}
+            </div>
+        </header>
+        <div id="main" class="tt-slider-">
+            <div class="main-area">
+                {% block content %}
+                {% endblock content %}
+            </div>
+            <div id="footer-top">&nbsp;</div>
+        </div>
+
+        <footer role="contentinfo" id="footer">
+            {% include 'bottom-footer.html' %}
+        </footer>
+    </div>
+</div>
+
+{% block javascript %}
+    <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/custom-main.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/superfish.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.flexslider.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.fitvids.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/scrollWatch.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.isotope.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.ui.core.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.ui.widget.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.ui.tabs.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.ui.accordion.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.prettyPhoto.js' %}"></script>
+{% endblock javascript %}
+</body>
+</html>

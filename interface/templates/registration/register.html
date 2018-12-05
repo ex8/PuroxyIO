@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load recaptcha2 %}
+
+{% block title %}
+    Register
+{% endblock title %}
+
+{% block stylesheets %}
+    {{ block.super }}
+{% endblock stylesheets %}
+
+{% block content %}
+    {% recaptcha_init %}
+    <h6 class="heading-horizontal" style="margin:20px 0 40px 0;">
+        <span>Interface Register</span>
+    </h6>
+    <div class="one_third tt-column">
+        <p></p>
+    </div>
+    <div class="one_third tt-column">
+        <div align="center">
+            {% if form.errors %}
+                {% for error in form.errors %}
+                    <div class="karma_notify message_red" style="font-size: 13px;">
+                        <p>An error occurred registering your {{ error|safe }}</p>
+                    </div>
+                {% endfor %}
+            {% endif %}
+            <div class="tt-icon-box">
+                <form method="post" action=".">
+                    <ul class="input-list style-1 clearfix no-bullets">
+                        {{ form.username }}
+                        {{ form.first_name }}
+                        {{ form.last_name }}
+                        {{ form.email }}
+                        {{ form.password }}
+                        {{ form.password2 }}
+                        {{ form.captcha }}
+                        {% csrf_token %}
+                    </ul>
+                    <button type="submit" class="ka_button small_button small_tealgrey">
+                        <i class="fa fa-plus"></i>Register
+                    </button>
+                </form>
+                <p>
+                    Already have an account?
+                    <a class="no-underline" href="{% url 'interface:login' %}">Login</a>
+                </p>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block javascript %}
+    {{ block.super }}
+{% endblock javascript %}

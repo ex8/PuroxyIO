@@ -1,0 +1,162 @@
+{% extends 'main_base.html' %}
+
+{% block title %}
+    PuroxyIO | Providing the Best Offshore Dedicated Servers
+{% endblock title %}
+
+{% block seo %}
+    <meta name="description"
+          content="PuroxyIO delivers reliable and top notch Hosting, VPS, and Dedicated Servers the best price."/>
+    <meta name="keywords" lang="en" content="dedicated servers, vps, hosting,
+            bitcoin dedicated servers, btc dedicated servers, bitcoin cash dedicated servers, bch dedicated servers,
+            bitcoin vps, btc vps, bitcoin cash vps, bch vps,
+            bitcoin web hosting, btc web hosting, bitcoin cash web hosting, bch web hosting,
+            paypal, ssd linux vps, ssd windows vps, dedicated hosting, btc dedicated hosting"/>
+    <meta name="robots" content="index, follow"/>
+    <meta name="page-topic" content="Offshore Dedicated Servers, dedicated servers, hosting, vps, linux vps"/>
+    <meta name="author" content="Puroxy.io"/>
+    <meta name="copyright" content="Puroxy.io"/>
+    <meta name="revisit-after" content="7 days"/>
+    <meta http-equiv="content-language" content="en"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+{% endblock seo %}
+
+{% block stylesheets %}
+    {{ block.super }}
+{% endblock stylesheets %}
+
+{% block content %}
+    <main role="main" id="content" class="content_full_width">
+        <div class="callout-wrap">
+            <span>
+                PuroxyIO was built with the <i>consumer</i> in mind.
+                Every aspect of our infrastructure is centred around
+                delivering the utmost quality, support, and privacy for our clients.
+            </span>
+        </div>
+
+        <br class="clear"/>
+
+        <div class="one_third tt-column">
+            <div class="tt-icon-box">
+                <span class="fa-stack fa-4x">
+                    <i class="fa fa-circle fa-stack-2x" style="color:#8FE88C;"></i>
+                    <i class="fa fa-bolt fa-stack-1x fa-inverse"></i>
+                </span>
+            </div>
+            <h4>High Speeds</h4>
+            <p>We guarantee high speeds for our clients at all times.
+                All of our servers are full, single tenants found in our facilities.
+                This allows for easy scalability and flexibility.</p>
+        </div>
+        <div class="one_third tt-column">
+            <div class="tt-icon-box">
+                <span class="fa-stack fa-4x">
+                    <i class="fa fa-circle fa-stack-2x" style="color:#E8B3AC;"></i>
+                    <i class="fa fa-heart fa-stack-1x fa-inverse"></i>
+                </span>
+            </div>
+            <h4>Reliable</h4>
+            <p>We ensure 100% up-time with respect to all of our products and services.
+                Downtime won’t effect your ability to produce, develop, or create on our network.</p>
+        </div>
+        <div class="one_third_last tt-column">
+            <div class="tt-icon-box">
+                <span class="fa-stack fa-4x">
+                    <i class="fa fa-circle fa-stack-2x" style="color:#B8B8FF;"></i>
+                    <i class="fa fa-lock fa-stack-1x fa-inverse"></i>
+                </span>
+            </div>
+            <h4>Secure</h4>
+            <p>Security is our number one priority.
+                In this age, your privacy is the
+                highest concern within our value proposition,
+                and we guarantee top calibre security measures for your servers.</p>
+        </div>
+
+        <br class="clear"/>
+        <div class="hr_gap" style="height:40px;"></div>
+        <h6 class="heading-horizontal" style="margin:0 0 0 0;"><span>Products</span></h6>
+        <br class="clear"/>
+
+        <div class="one_third tt-column">
+            <div class="tt-icon-box">
+                <h2>Web Hosting</h2>
+                <strong>50GB HDD RAID1</strong> <br/>
+                <strong>500GB Premium Bandwidth</strong> <br/>
+                Unlimited Email Accounts <br/>
+                Unlimited MySQL Databases <br/>
+                Unlimited Sub Domains <br/>
+                1Gbps Uplink <br/>
+                <br/>
+                <h5><u>Starting at $3/month</u></h5>
+                <a href="{% url 'main:hosting' %}">
+                    <button type="submit" class="ka_button small_button small_tealgrey">View More</button>
+                </a>
+            </div>
+        </div>
+        <div class="one_third tt-column">
+            <div class="tt-icon-box">
+                <h2>VPS SSD Cloud</h2>
+                <strong>1GB DDR4 RAM</strong> <br/>
+                <strong>50GB SSD RAID10</strong> <br/>
+                <strong>3TB Premium Bandwidth</strong> <br/>
+                2.5Ghz Xeon-2640 <br/>
+                4 CPU Cores <br/>
+                Fully Redundant Network <br/>
+                <br/>
+                <h5><u>Starting at $10/month</u></h5>
+                <a href="{% url 'main:linux_vps' %}">
+                    <button type="submit" class="ka_button small_button small_tealgrey">View More</button>
+                </a>
+            </div>
+        </div>
+        <div class="one_third_last tt-column">
+            <div class="tt-icon-box">
+                <h2>Dedicated Servers</h2>
+                <strong>8GB DDR4 RAM</strong> <br/>
+                <strong>250GB HDD RAID1</strong> <br/>
+                <strong>5TB Premium Bandwidth</strong> <br/>
+                2.2Ghz Xeon-E4500 <br/>
+                2 CPU Cores <br/>
+                1Gbps Uplink <br/>
+                <br/>
+                <h5><u>Starting at $60/month</u></h5>
+                <a href="{% url 'main:onshore_dedi' %}">
+                    <button type="submit" class="ka_button small_button small_tealgrey">View More</button>
+                </a>
+            </div>
+        </div>
+
+        <br class="clear"/>
+        <div class="hr_gap" style="height:40px;"></div>
+
+        <h6 class="heading-horizontal" style="margin:0 0 0 0;"><span>Payment Gateways</span></h6>
+        <br class="clear"/>
+
+        {% for gateway in gateways %}
+            <div class="one_fifth tt-column">
+                <div class="tt-icon-box">
+                    <span class="fa-stack fa-4x">
+                        <i class="fa fa-circle fa-stack-2x" style="color:{{ gateway.color }};"></i>
+                        <i class="fab fa-{{ gateway.icon }} fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <h6>{{ gateway.name }}</h6>
+                </div>
+            </div>
+        {% endfor %}
+        <div class="one_fifth_last tt-column">
+            <div class="tt-icon-box">
+                <span class="fa-stack fa-4x">
+                    <i class="fa fa-circle fa-stack-2x" style="color:#E8B3AC;"></i>
+                    <i class="fa fa-plus fa-stack-1x fa-inverse"></i>
+                </span>
+                <h6>Plus more!</h6>
+            </div>
+        </div>
+    </main>
+{% endblock content %}
+
+{% block javascript %}
+    {{ block.super }}
+{% endblock javascript %}

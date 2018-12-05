@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Logged out
+{% endblock title %}
+
+{% block stylesheets %}
+    {{ block.super }}
+{% endblock stylesheets %}
+
+{% block content %}
+    <h6 class="heading-horizontal" style="margin:20px 0 40px 0;">
+        <span>Interface Logout</span>
+    </h6>
+    <div class="one_third tt-column">
+        <p></p>
+    </div>
+    <div class="one_third tt-column">
+        <div align="center">
+            <div class="tt-icon-box">
+                <div class="karma_notify message_yellow" style="font-size: 13px;">
+                    <p>You have logged out.</p>
+                </div>
+                <a href="{% url 'interface:login' %}">
+                    <button class="ka_button small_button small_tealgrey">
+                        <span id="buttonInnerText">Login</span>
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block javascript %}
+    {{ block.super }}
+{% endblock javascript %}

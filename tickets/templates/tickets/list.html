@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Tickets
+{% endblock title %}
+
+{% block stylesheets %}
+    {{ block.super }}
+{% endblock stylesheets %}
+
+{% block content %}
+    <div class="title-content-left">
+        <h2>Tickets <span class="smalltext">here you can connect with our support team</span></h2>
+    </div>
+    <div class="button-content-right">
+        <a href="{% url 'tickets:new' %}" class="ka_button small_button small_tealgrey">New</a>
+    </div>
+
+    <br class="clear"/>
+    <br class="clear"/>
+
+    {% for ticket in tickets %}
+        <div class="tt-icon-box matt-width-fix">
+            <div class="one_fifth tt-column">
+                <strong>Subject</strong>
+                <br/>
+                <span class="smalltext">{{ ticket.subject|truncatechars:38 }}</span>
+            </div>
+            <div class="one_fifth tt-column">
+                <strong>Message</strong>
+                <br/>
+                <span class="smalltext">{{ ticket.message|truncatechars:38 }}</span>
+            </div>
+            <div class="one_fifth tt-column">
+                <strong>Priority</strong>
+                <br/>
+                <span class="smalltext">{{ ticket.priority|title }}</span>
+            </div>
+            <div class="one_fifth tt-column">
+                <strong>Status</strong>
+                <br/>
+                <span class="label-button label-{{ ticket.get_status.label }}">
+                    {{ ticket.get_status.status }}
+                </span>
+            </div>
+            <div class="one_fifth_last tt-column">
+                <a href="{% url 'tickets:detail' ticket.uuid %}"
+                   class="ka_button small_button small_tealgrey">
+                    <i class="fa fa-comments"></i><span class="smalltext">View</span>
+                </a>
+            </div>
+        </div>
+    {% empty %}
+        <div class="karma_notify message_blue" style="font-size: 13px;">
+            <p>You currently have no tickets with us</p>
+        </div>
+    {% endfor %}
+    {% include 'pagination.html' with page=tickets %}
+{% endblock content %}
+
+{% block javascript %}
+    {{ block.super }}
+{% endblock javascript %}

@@ -1,0 +1,35 @@
+{% extends 'setting_base.html' %}
+
+{% block title %}
+    Settings
+{% endblock title %}
+
+{% block stylesheets %}
+    {{ block.super }}
+{% endblock stylesheets %}
+
+{% block content %}
+    <h6 class="heading-horizontal" style="margin:20px 0 40px 0;">
+        <span>General Settings</span>
+    </h6>
+    <div align="right" class="smalltext">
+        <i>Username:</i> {{ request.user.username }} <br/>
+        <i>Email:</i> {{ request.user.email }}
+    </div>
+    <form method="post">
+        <ul class="input-list style-1 clearfix no-bullets">
+            <li>{{ form.first_name }}</li>
+            <li>{{ form.last_name }}</li>
+            {% csrf_token %}
+        </ul>
+        <div align="right">
+            <button type="submit" class="ka_button small_button small_tealgrey">
+                Save Changes
+            </button>
+        </div>
+    </form>
+{% endblock content %}
+
+{% block javascript %}
+    {{ block.super }}
+{% endblock javascript %}

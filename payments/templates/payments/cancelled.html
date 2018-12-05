@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Payments - Cancelled
+{% endblock title %}
+
+{% block stylesheets %}
+    {{ block.super }}
+{% endblock stylesheets %}
+
+{% block content %}
+    <div class="tt-icon-box">
+            <span class="fa-stack fa-4x">
+                <i class="fa fa-circle fa-stack-2x" style="color:#62707D;"></i>
+                <i class="fa fa-thumbs-o-down fa-stack-1x fa-inverse"></i>
+            </span>
+        <h6>
+            Your payment using {{ gateway.name }} was rejected or cancelled. <br />
+            Please contact support if you have any issues or concerns.
+        </h6>
+        <a href="{% url 'invoices:detail' invoice.uuid %}" class="ka_button small_button small_tealgrey">
+            <i class="fa fa-credit-card-alt"></i> Invoice
+        </a>
+    </div>
+{% endblock content %}
+
+{% block javascript %}
+    {{ block.super }}
+{% endblock javascript %}

@@ -1,0 +1,31 @@
+<div class="toolbar-left">
+    <ul>
+        <li>
+            <a href="{% url 'main:home' %}">Home</a>
+        </li>
+        <li>
+            <a href="{% url 'interface:dashboard' %}">Interface</a>
+            <ul class="sub-menu">
+                <li><a href="{% url 'services:list' %}"><span>Services</span></a></li>
+                <li><a href="{% url 'order:list' %}"><span>Order</span></a></li>
+                <li><a href="{% url 'invoices:list' %}"><span>Invoices</span></a></li>
+                <li><a href="{% url 'tickets:list' %}"><span>Tickets</span></a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+<div class="toolbar-right">
+    <ul>
+        {% if request.user.is_authenticated %}
+            <li>
+                <a href="{% url 'interface:dashboard' %}">
+                    <i class="fa fa-user"></i> {{ request.user.first_name }}</a>
+            </li>
+            <li><a href="{% url 'interface:logout' %}">Logout</a></li>
+        {% else %}
+            <li><a href="{% url 'interface:login' %}">Login</a></li>
+            <li><a href="{% url 'interface:register' %}">Register</a></li>
+        {% endif %}
+    </ul>
+</div>

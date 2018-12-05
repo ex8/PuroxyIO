@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Login
+{% endblock title %}
+
+{% block stylesheets %}
+    {{ block.super }}
+{% endblock stylesheets %}
+
+{% block content %}
+    <h6 class="heading-horizontal" style="margin:20px 0 40px 0;">
+        <span>Interface Login</span>
+    </h6>
+    <div class="one_third tt-column">
+        <p></p>
+    </div>
+    <div class="one_third tt-column">
+        <div align="center">
+            {% if form.errors %}
+                <div class="karma_notify message_red" style="font-size: 13px;">
+                    <p>Incorrect email or password</p>
+                </div>
+            {% endif %}
+            <div class="tt-icon-box">
+                <form method="post" action="{% url 'interface:login' %}">
+                    <ul class="input-list style-1 clearfix no-bullets">
+                        <li>{{ form.username }}</li>
+                        <li>{{ form.password }}</li>
+                        {% csrf_token %}
+                    </ul>
+                    <input type="hidden" name="next" value="{{ next }}"/>
+                    <button type="submit" class="ka_button small_button small_tealgrey">
+                        <span id="buttonInnerText">
+                            <i class="fa fa-sign-in"></i>Proceed
+                        </span>
+                    </button>
+                </form>
+                <p>
+                    <a class="no-underline" href="{% url 'interface:password_reset' %}">
+                        Forgot your password?
+                    </a>
+                    <br class="clear"/>
+                    Don't have an account?
+                    <a class="no-underline" href="{% url 'interface:register' %}">
+                        Sign up
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block javascript %}
+    {{ block.super }}
+{% endblock javascript %}

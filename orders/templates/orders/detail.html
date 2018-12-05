@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Order - {{ product.name }}
+{% endblock title %}
+
+{% block stylesheets %}
+    {{ block.super }}
+{% endblock stylesheets %}
+
+{% block content %}
+    {% if not disabled %}
+        <div class="three_fourth tt-column">
+            <div class="tt-icon-box">
+                <h2>Package: {{ product.name }}</h2>
+                {{ product.description }}
+            </div>
+
+            <form method="post">
+                <div class="tt-icon-box">
+                    <h2>Product Configuration</h2>
+                    <span class="smalltext">
+                        The product you have chosen requires additional configuration.
+                    </span>
+                    <ul class="input-list style-1 clearfix no-bullets">
+                        {% for field in form %}
+                            <li>{{ field }}</li>
+                        {% endfor %}
+                    </ul>
+                    <button type="submit" class="ka_button small_button small_tealgrey">Order</button>
+                </div>
+
+                <br class="clear"/>
+
+                <h2>Product Addons <span
+                        class="smalltext">available addons for your product</span>
+                </h2>
+                {% for addon_field in addon_form %}
+                    <div class="tt-icon-box">
+                        {{ addon_field }} {{ addon_field.help_text }}
+                    </div>
+                {% empty %}
+                    <div class="karma_notify message_blue" style="font-size: 13px;">
+                        <p>No addons available for this product</p>
+                    </div>
+                {% endfor %}
+                {% csrf_token %}
+            </form>
+        </div>
+        <div class="one_fourth_last tt-column">
+            <div class="tt-icon-box">
+                <h2>Price</h2>
+                <h5>${{ product.price }}/month</h5>
+            </div>
+        </div>
+    {% else %}
+        <div class="karma_notify message_blue" style="font-size: 13px;">
+            <p>You are unable to order a new service at this time.</p>
+        </div>
+    {% endif %}
+{% endblock content %}
+
+{% block javascript %}
+    {{ block.super }}
+{% endblock javascript %}

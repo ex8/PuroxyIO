@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Invoices
+{% endblock title %}
+
+{% block stylesheets %}
+    {{ block.super }}
+{% endblock stylesheets %}
+
+{% block content %}
+    <div class="title-content-left">
+        <h2>
+            Invoices <span class="smalltext">here you can view your bills with us</span>
+        </h2>
+    </div>
+
+    <br class="clear"/>
+    <br class="clear"/>
+
+    {% for invoice in invoices %}
+        <div class="tt-icon-box matt-width-fix">
+            <div class="one_sixth tt-column">
+                <strong>Service</strong>
+                <br/>
+                <span class="smalltext">{{ invoice.order }}</span>
+            </div>
+            <div class="one_sixth tt-column">
+                <strong>Date</strong>
+                <br/>
+                <span class="smalltext">{{ invoice.date|date:'m-d-Y' }}</span>
+            </div>
+            <div class="one_sixth tt-column">
+                <strong>Due Date</strong>
+                <br/>
+                <span class="smalltext">{{ invoice.due_date|date:'m-d-Y' }}</span>
+            </div>
+            <div class="one_sixth tt-column">
+                <strong>Amount</strong>
+                <br/>
+                <span class="smalltext">${{ invoice.get_total_cost }}</span>
+            </div>
+            <div class="one_sixth tt-column">
+                <strong>Status</strong>
+                <br/>
+                {% if invoice.paid %}
+                    <span class="label-button label-green">PAID</span>
+                {% else %}
+                    <span class="label-button label-red">UNPAID</span>
+                {% endif %}
+            </div>
+            <div class="one_sixth_last tt-column">
+                <a href="{% url 'invoices:detail' invoice.uuid %}"
+                   class="ka_button small_button small_tealgrey"><i
+                        class="fa fa-file-text"></i><span class="smalltext">View</span></a>
+            </div>
+        </div>
+    {% empty %}
+        <div class="karma_notify message_blue" style="font-size: 13px;">
+            <p>You currently have no invoices with us.</p>
+        </div>
+    {% endfor %}
+    {% include 'pagination.html' with page=invoices %}
+{% endblock content %}
+
+{% block javascript %}
+    {{ block.super }}
+{% endblock javascript %}

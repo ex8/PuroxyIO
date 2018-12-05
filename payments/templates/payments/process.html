@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Payments - {{ gateway.name }}
+{% endblock title %}
+
+{% block stylesheets %}
+    {{ block.super }}
+{% endblock stylesheets %}
+
+{% block content %}
+    <a href="{% url 'payments:list' invoice.uuid %}">
+        <button type="submit" class="ka_button small_button small_tealgrey">
+            <i class="fa fa-backward"></i> Back to list
+        </button>
+    </a>
+    <div class="tt-icon-box">
+            <span class="fa-stack fa-4x">
+                <i class="fa fa-circle fa-stack-2x" style="color:{{ gateway.color }};"></i>
+                <i class="fab fa-{{ gateway.icon }} fa-stack-1x fa-inverse"></i>
+            </span>
+        <h6>{{ gateway.name }}</h6>
+        <p>{{ gateway.description }}</p>
+
+        <form method="post" action="{{ gateway.post_url }}">
+            {{ form }}
+            {% csrf_token %}
+            <button type="submit" class="ka_button small_button small_tealgrey">
+                <i class="fa fa-credit-card-alt"></i>Begin {{ gateway.name }} Payment Process
+            </button>
+        </form>
+    </div>
+
+    <br class="clear"/>
+
+    <span class="smalltext">
+        By paying <i>this</i> invoice, you agree to our
+        <a href="{% url 'main:terms' %}" target="_blank" class="no-underline">terms of service</a>.
+    </span>
+{% endblock content %}
+
+{% block javascript %}
+    {{ block.super }}
+{% endblock javascript %}

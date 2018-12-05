@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Payments
+{% endblock %}
+
+{% block stylesheets %}
+    {{ block.super }}
+{% endblock stylesheets %}
+
+{% block content %}
+    <div class="title-content-left">
+        <h2>
+            Payments
+            <span class="smalltext">here you can pay your bill</span>
+        </h2>
+    </div>
+    <br class="clear"/>
+
+    {% for gateway in gateways %}
+        <div class="one_fifth tt-column">
+            <a href="{% url 'payments:process' invoice.uuid gateway.slug %}">
+                <div class="tt-icon-box">
+            <span class="fa-stack fa-4x">
+                <i class="fa fa-circle fa-stack-2x" style="color:{{ gateway.color }};"></i>
+                <i class="fab fa-{{ gateway.icon }} fa-stack-1x fa-inverse"></i>
+            </span>
+                    <h6>{{ gateway.name }}</h6>
+                    {#                    <a href="{% url 'payments:process' invoice.uuid gateway.slug %}"#}
+                    {#                       class="ka_button small_button small_tealgrey">Pay</a>#}
+                </div>
+            </a>
+        </div>
+    {% endfor %}
+    <div class="one_fifth_last tt-column">
+        <div class="tt-icon-box">
+                <span class="fa-stack fa-4x">
+                    <i class="fa fa-circle fa-stack-2x" style="color:#E8B3AC;"></i>
+                    <i class="fa fa-plus fa-stack-1x fa-inverse"></i>
+                </span>
+            <h6>Plus more!</h6>
+        </div>
+    </div>
+
+    <div class="two_thirds tt-column">
+        <div class="tt-icon-box">
+            <div align="left">
+                <ul class="no-bullets">
+                    <li><strong>Order ID:</strong> {{ invoice.order.uuid }}</li>
+                    <li><strong>Product:</strong> {{ invoice.order.product.name }}</li>
+                    <li><strong>Service:</strong> {{ invoice.order.service.hostname }}</li>
+                    <li><strong>Invoice Date:</strong> {{ invoice.date|date:'m-d-y - h:i A' }}</li>
+                    <li><strong>Invoice Due Date:</strong> {{ invoice.due_date|date:'m-d-y - h:i A' }}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="one_third_last tt-column">
+        <div class="tt-icon-box">
+            <h2>Amount</h2>
+            <h4>${{ invoice.get_total_cost }}</h4>
+        </div>
+    </div>
+
+    <br class="clear"/>
+
+    <span class="smalltext">
+        By paying <i>this</i> invoice, you agree to our
+        <a href="{% url 'main:terms' %}" target="_blank" class="no-underline">terms of service</a>.
+    </span>
+{% endblock content %}
+
+{% block javascript %}
+    {{ block.super }}
+{% endblock javascript %}

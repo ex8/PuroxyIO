@@ -1,0 +1,181 @@
+{% extends 'main_base.html' %}
+
+{% block title %}
+    Linux VPS
+{% endblock title %}
+
+{% block seo %}
+    <meta name="description"
+          content="Our Linux VPS packages come equipped with SSD, Premium Bandwidth, High Speeds, and many other features!"/>
+    <meta name="keywords" lang="en" content="puroxyio, linus vps, xen vps, virtual private server, bitcoin vps,
+          bitcoin ssd vps, bitcoin cash vps, bitcoin cash ssd vps, crypto vps, ethereum vps"/>
+    <meta name="robots" content="index, follow"/>
+    <meta name="page-topic" content="puroxyio, linux vps, xen vps"/>
+    <meta name="author" content="Puroxy.io"/>
+    <meta name="copyright" content="Puroxy.io"/>
+    <meta name="revisit-after" content="7 days"/>
+    <meta http-equiv="content-language" content="en"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+{% endblock seo %}
+
+{% block stylesheets %}
+    {{ block.super }}
+{% endblock stylesheets %}
+
+{% block content %}
+    <main role="main" id="content" class="content_full_width">
+        <div class="callout-wrap">
+            <div align="center">
+                <span>
+                    Our variety of <i>Linux VPS</i> packages allows
+                    you to select the right level of service for your specific needs.
+                </span>
+            </div>
+        </div>
+
+        {% for p1, p2 in products %}
+            <div class="one_half tt-column">
+                <div class="tt-icon-box">
+                    <span class="fa-stack fa-3x">
+                        <i class="fa fa-circle fa-stack-2x" style="color:#B8B8FF;"></i>
+                        <i class="fa fa-linux fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <h2><u>{{ p1.name }} - ${{ p1.price }}/month</u></h2>
+                    <ul class="no-bullets">
+                        <li>{{ p1.description|linebreaks }}</li>
+                    </ul>
+                    <a href="{% url 'order:detail' p1.slug %}"
+                       class="ka_button small_button small_tealgrey">Order</a>
+                </div>
+            </div>
+            <div class="one_half_last tt-column">
+                <div class="tt-icon-box">
+                    <span class="fa-stack fa-3x">
+                        <i class="fa fa-circle fa-stack-2x" style="color:#B8B8FF;"></i>
+                        <i class="fa fa-linux fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <h2><u>{{ p2.name }} - ${{ p2.price }}/month</u></h2>
+                    <ul class="no-bullets">
+                        <li>{{ p2.description|linebreaks }}</li>
+                    </ul>
+                    <a href="{% url 'order:detail' p2.slug %}"
+                       class="ka_button small_button small_tealgrey">Order</a>
+                </div>
+            </div>
+            {% empty %}
+            <div class="tt-icon-box">
+                <span class="fa-stack fa-3x">
+                    <i class="fa fa-circle fa-stack-2x" style="color:#B4D3E8;"></i>
+                    <i class="fa fa-sad-cry fa-stack-1x fa-inverse"></i>
+                </span>
+                <h2>There are currently no available products</h2>
+            </div>
+        {% endfor %}
+
+        <div class="one_third tt-column">
+            <div class="tt-icon-box">
+                <span class="fa-stack fa-4x">
+                    <i class="fa fa-circle fa-stack-2x" style="color:#E8B3AC;"></i>
+                    <i class="fa fa-bolt fa-stack-1x fa-inverse"></i>
+                </span>
+                <h3>Power</h3>
+                <p>
+                    All servers and network gear are supplied with ample
+                    power on separate power feeds. You can also boot, reboot,
+                    and shutdown your server from within your interface
+                    with a click of a button.
+                </p>
+            </div>
+        </div>
+        <div class="one_third tt-column">
+            <div class="tt-icon-box">
+                <span class="fa-stack fa-4x">
+                    <i class="fa fa-circle fa-stack-2x" style="color:#C9D1FF;"></i>
+                    <i class="fa fa-cloud fa-stack-1x fa-inverse"></i>
+                </span>
+                <h3>Network</h3>
+                <p>
+                    All servers are connected to two access switches.
+                    Each switch is connected to two cores for added functionality.
+                    All servers include 1 IPv4 address, you can request additional
+                    IP's if you need them.
+                </p>
+            </div>
+        </div>
+        <div class="one_third_last tt-column">
+            <div class="tt-icon-box">
+                <span class="fa-stack fa-4x">
+                    <i class="fa fa-circle fa-stack-2x" style="color:#91E889;"></i>
+                    <i class="fa fa-hdd-o fa-stack-1x fa-inverse"></i></span>
+                <h3>Operating System</h3>
+                <p>
+                    Deploy your favorite linux operating system distribution
+                    with a simple click of a button during checkout.
+                    We provide the latest versions of Ubuntu, CentOS,
+                    Debian, Arch Linux, Gentoo and many more!
+                </p>
+            </div>
+        </div>
+        <div class="one_third tt-column">
+            <div class="tt-icon-box">
+                <span class="fa-stack fa-4x">
+                    <i class="fa fa-circle fa-stack-2x" style="color:#89C9E8;"></i>
+                    <i class="fa fa-lock fa-stack-1x fa-inverse"></i>
+                </span>
+                <h3>TOR Service</h3>
+                <p>
+                    We can setup a custom random .ONION domain for your site,
+                    should you want to develop a TOR website.
+                    Alternatively, you can order a <i>custom</i> 6-7 letter TOR
+                    domain name upon checking out.
+                </p>
+            </div>
+        </div>
+
+        <div class="one_third tt-column">
+            <div class="tt-icon-box">
+                <span class="fa-stack fa-4x">
+                    <i class="fa fa-circle fa-stack-2x" style="color:#FFE397;"></i>
+                    <i class="fa fa-building-o fa-stack-1x fa-inverse"></i>
+                </span>
+                <h3>Storage</h3>
+                <p>
+                    We provide all new servers with high performance
+                    SSD drives, which are 20x faster than standard
+                    SATA drives. SSD hard drives are durable and
+                    secure, designed to keep your data safe in the event of a damaged disk.
+                </p>
+            </div>
+        </div>
+        <div class="one_third_last tt-column">
+            <div class="tt-icon-box">
+                <span class="fa-stack fa-4x">
+                    <i class="fa fa-circle fa-stack-2x" style="color:#51B46D;"></i>
+                    <i class="fa fa-thumbs-o-up fa-stack-1x fa-inverse"></i>
+                </span>
+                <h3>Did You Know?</h3>
+                <p>
+                    Linux virtual servers provide the speed and reliability
+                    of dedicated servers for a fraction of the cost.
+                    Unlike dedicated servers, Xen VPS instances can be
+                    upgraded or downgraded on-the-fly as needed.
+                </p>
+            </div>
+        </div>
+
+        <div class="tt-icon-box">
+        <span class="fa-stack fa-4x">
+            <i class="fa fa-circle fa-stack-2x" style="color:#2E8DEF;"></i>
+            <i class="fa fa-windows fa-stack-1x fa-inverse"></i>
+        </span>
+            <h3>Be sure to check out our Windows VPS packages!</h3>
+            <a href="{% url 'main:win_vps' %}">
+                <button type="submit" class="ka_button small_button small_tealgrey">Windows VPS</button>
+            </a>
+        </div>
+    </main>
+{% endblock content %}
+
+{% block javascript %}
+    {{ block.super }}
+{% endblock javascript %}

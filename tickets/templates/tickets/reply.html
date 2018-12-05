@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Ticket
+{% endblock title %}
+
+{% block content %}
+    <form method="post">
+        <ul class="input-list style-2 clearfix no-bullets">
+            <li>{{ form.message }}</li>
+            {% csrf_token %}
+        </ul>
+        <div align="right">
+            <button type="submit" class="ka_button small_button small_royalblue">
+                <i class="fa fa-reply"></i> <span class="smalltext">Reply</span></button>
+        </div>
+    </form>
+
+    <h3>Ticket Conversation</h3>
+    {% for response in responses %}
+        {% if response.user.is_staff %}
+            <div class="tt-icon-box beige-box">
+                <div class="ticket-info-right">
+                    <i class="fa fa-user"></i> {{ response.user.first_name }} {{ response.user.last_name }}
+                    <br/>
+                    <i class="fa fa-calendar"></i> {{ response.created|date:'m-d-y - h:i A' }}
+                </div>
+                <div class="title-content-left" style="text-align: left;">
+                    {{ response.message|linebreaks }}
+                </div>
+            </div>
+        {% else %}
+            <div class="tt-icon-box">
+                <div class="ticket-info-right">
+                    <i class="fa fa-user"></i> {{ response.user.first_name }} {{ response.user.last_name }}
+                    <br/>
+                    <i class="fa fa-calendar"></i> {{ response.created|date:'m-d-y - h:i A' }}
+                </div>
+                <div class="title-content-left" style="text-align: left;">
+                    {{ response.message|linebreaks }}
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+
+    <!-- First message from ticket creation -->
+    <div class="tt-icon-box">
+        <div class="ticket-info-right">
+            <i class="fa fa-user"></i> {{ ticket.user.first_name }} {{ ticket.user.last_name }}
+            <br/>
+            <i class="fa fa-calendar"></i> {{ ticket.created|date:'m-d-y - h:i A' }}
+        </div>
+        <div class="title-content-left" style="text-align: left;">
+            {{ ticket.message|linebreaks }}
+        </div>
+    </div>
+{% endblock content %}
+
+{% block javascript %}
+    {{ block.super }}
+{% endblock javascript %}

@@ -1,0 +1,124 @@
+{% extends 'main_base.html' %}
+
+{% block title %}
+    Windows VPS
+{% endblock title %}
+
+{% block seo %}
+    <meta name="description"
+          content="Our Window VPS packages come equipped with SSD, Premium Bandwidth, High Speeds, and many other features!"/>
+    <meta name="keywords" lang="en" content="puroxyio, linus vps, xen vps, virtual private server, bitcoin vps,
+          bitcoin ssd vps, bitcoin cash vps, bitcoin cash ssd vps, crypto vps, ethereum vps"/>
+    <meta name="robots" content="index, follow"/>
+    <meta name="page-topic" content="puroxyio, windows vps"/>
+    <meta name="author" content="Puroxy.io"/>
+    <meta name="copyright" content="Puroxy.io"/>
+    <meta name="revisit-after" content="7 days"/>
+    <meta http-equiv="content-language" content="en"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+{% endblock seo %}
+
+{% block stylesheets %}
+    {{ block.super }}
+{% endblock stylesheets %}
+
+{% block content %}
+    <main role="main" id="content" class="content_full_width">
+        <div class="callout-wrap">
+            <div align="center">
+                <span>
+                    Our variety of <i>Windows VPS</i> packages allows
+                    you to select the right level of service for your specific needs.
+                </span>
+            </div>
+        </div>
+
+        {% for p1, p2 in products %}
+            <div class="one_half tt-column">
+                <div class="tt-icon-box">
+                    <span class="fa-stack fa-3x">
+                        <i class="fa fa-circle fa-stack-2x" style="color:#53BBB4;"></i>
+                        <i class="fa fa-windows fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <h2><u>{{ p1.name }} - ${{ p1.price }}/month</u></h2>
+                    <ul class="no-bullets">
+                        <li>{{ p1.description|linebreaks }}</li>
+                    </ul>
+                    <a href="{% url 'order:detail' p1.slug %}"
+                       class="ka_button small_button small_tealgrey">Order</a>
+                </div>
+            </div>
+            <div class="one_half_last tt-column">
+                <div class="tt-icon-box">
+                    <span class="fa-stack fa-3x">
+                        <i class="fa fa-circle fa-stack-2x" style="color:#53BBB4;"></i>
+                        <i class="fa fa-windows fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <h2><u>{{ p2.name }} - ${{ p2.price }}/month</u></h2>
+                    <ul class="no-bullets">
+                        <li>{{ p2.description|linebreaks }}</li>
+                    </ul>
+                    <a href="{% url 'order:detail' p2.slug %}"
+                       class="ka_button small_button small_tealgrey">Order</a>
+                </div>
+            </div>
+            {% empty %}
+            <div class="tt-icon-box">
+                <span class="fa-stack fa-3x">
+                    <i class="fa fa-circle fa-stack-2x" style="color:#B4D3E8;"></i>
+                    <i class="fa fa-sad-cry fa-stack-1x fa-inverse"></i>
+                </span>
+                <h2>There are currently no available products</h2>
+            </div>
+        {% endfor %}
+
+        <div class="one_third tt-column">
+            <div class="tt-icon-box">
+                <span class="fa-stack fa-4x">
+                    <i class="fa fa-circle fa-stack-2x" style="color:#FFE9AE;"></i>
+                    <i class="fa fa-hdd-o fa-stack-1x fa-inverse"></i>
+                </span>
+                <h3>Platform</h3>
+                <p>
+                    We leveraged a decade of experience to develop our
+                    own powerful Windows VPS platform from the bottom up,
+                    using the industry’s best hardware, optimized for virtualization
+                    all while maintaining speed.
+                </p>
+            </div>
+        </div>
+        <div class="one_third tt-column">
+            <div class="tt-icon-box">
+                <span class="fa-stack fa-4x">
+                    <i class="fa fa-circle fa-stack-2x" style="color:#A0EDFF;"></i>
+                    <i class="fa fa-key fa-stack-1x fa-inverse"></i>
+                </span>
+                <h3>Manage</h3>
+                <p>
+                    Full root access allows you to install any software you choose,
+                    while out of brand VNC access allows you to log in to your VPS even
+                    if it is not accessible publicly. Complete administration rights will be yours.
+                </p>
+            </div>
+        </div>
+        <div class="one_third_last tt-column">
+            <div class="tt-icon-box">
+                <span class="fa-stack fa-4x">
+                    <i class="fa fa-circle fa-stack-2x" style="color:#D3A9FF;"></i>
+                    <i class="fa fa-gears fa-stack-1x fa-inverse"></i>
+                </span>
+                <h3>Hardware</h3>
+                <p>
+                    We monitor our hardware and infrastructure around the clock to
+                    deliver excellent up-time while giving you complete control over
+                    the device. Our agents are available to provide
+                    assistance at any time as well.
+                </p>
+            </div>
+        </div>
+    </main>
+{% endblock content %}
+
+{% block javascript %}
+    {{ block.super }}
+{% endblock javascript %}

@@ -1,0 +1,109 @@
+{% extends 'main_base.html' %}
+{% load static %}
+
+{% block title %}
+    About
+{% endblock title %}
+
+{% block seo %}
+    <meta name="description"
+          content="PuroxyIO delivers reliable and top notch hosting, VPS, and Dedicated Servers the best price."/>
+    <meta name="keywords" lang="en" content="about, about us, puroxyio history"/>
+    <meta name="robots" content="index, follow"/>
+    <meta name="page-topic" content="about, history, information, architecture"/>
+    <meta name="author" content="Puroxy.io"/>
+    <meta name="copyright" content="Puroxy.io"/>
+    <meta name="revisit-after" content="7 days"/>
+    <meta http-equiv="content-language" content="en"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+{% endblock seo %}
+
+{% block stylesheets %}
+    {{ block.super }}
+{% endblock stylesheets %}
+
+{% block content %}
+    <main role="main" id="content" class="content_left_sidebar content_no_subnav">
+        <h3>Who We Are</h3>
+        <p>
+            At PuroxyIO, we build our own servers from state of the art
+            hardware to ensure the utmost control quality and security.
+            This systematic approach enables us to guarantee hardware resources
+            are dedicated to you and your services. Additionally, to guarantee maximum
+            redundancy of our network, your PuroxyIO server is linked to a double routing point
+            to maintain performance and optimize speed.
+        </p>
+
+        <div class="hr_gap" style="height: 15px;"></div>
+
+        <div class="one_half tt-column">
+            <h4>Why choose us?</h4>
+            <p class="callout2">
+            <span>
+                Ranging from clients seeking to host a basic website for personal needs,
+                to entrepreneurs seeking enterprise-level server solutions,
+                PuroxyIO is here to assist all clients across all demographics,
+                at all levels of infrastructure.
+            </span>
+            </p>
+        </div>
+        <div class="one_half_last tt-column">
+            <div class="shadow_img_frame shadow_two_col_small">
+                <div class="img-preload">
+                    <img src="{% static 'images/network.png' %}"/>
+                </div>
+            </div>
+        </div>
+
+        <br class="clear"/>
+        <div class="hr_gap" style="height: 15px;"></div>
+        <h3>Security Management</h3>
+        <p>
+            At PuroxyIO, we devote significant attention to the security and
+            safety of your data. In order to guarantee the highest level of
+            security, we carefully calibrate our security equipment to be process
+            specific. We also employ an around-the-clock team of administrators
+            to manage all levels of infrastructure, so that your needs are
+            immediately addressable under any condition.
+        </p>
+    </main>
+    <aside role="complementary" id="sidebar" class="left_sidebar">
+        <div class="sidebar-widget">
+            <h4>Mission</h4>
+            <div class="textwidget">
+                <p>
+                    We pride ourselves on providing excellent
+                    services to our clients. We also back our services with
+                    robust security. Your privacy is our promise.
+                </p>
+            </div>
+        </div>
+        <div class="sidebar-widget">
+            <h4>Connect with us</h4>
+            <ul class="social_icons tt_vector_social_icons tt_vector_social_color tt_no_social_title tt_image_social_icons">
+                <li>
+                    <a href="https://twitter.com/PuroxyIO"
+                       target="_blank" class="twitter" title="Twitter">Twitter</a>
+                </li>
+                <li>
+                    <a href="https://www.facebook.com/PuroxyII"
+                       target="_blank" class="facebook" title="Facebook">Facebook</a>
+                </li>
+            </ul>
+        </div>
+        <div class="sidebar-widget">
+            <h4>Legal</h4>
+            <div class="textwidget">
+                <ul class="list list1">
+                    <li><a href="{% url 'main:terms' %}">Terms of Service</a></li>
+                    <li><a href="{% url 'main:privacy' %}">Privacy Policy</a></li>
+                    <li><a href="{% url 'main:dmca' %}">DMCA Policy</a></li>
+                </ul>
+            </div>
+        </div>
+    </aside>
+{% endblock content %}
+
+{% block javascript %}
+    {{ block.super }}
+{% endblock javascript %}

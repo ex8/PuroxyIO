@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load format_data_size %}
+
+{% block title %}
+    Services - {{ service.hostname }}
+{% endblock title %}
+
+{% block stylesheets %}
+    {{ block.super }}
+{% endblock stylesheets %}
+
+{% block content %}
+    <div class="title-content-left">
+        <h2>
+            Service - {{ service.hostname }} | Product - {{ product.name }}
+            <span class="smalltext">here you can manage your service</span>
+        </h2>
+    </div>
+
+    <br class="clear"/>
+
+    <div class="row">
+        <div class="one_half tt-column">
+            <div class="tt-icon-box">
+                <h2>Service Information</h2>
+                <ul class="no-bullets">
+                    <li><strong>Order Status:</strong>
+                        <span class="label-button label-{{ order.get_order_status_label.label }}">
+                            {{ order.get_order_status_label.status }}
+                        </span>
+                    </li>
+                    <li><strong>Hostname:</strong> {{ service.hostname }}</li>
+                    <li><strong>Main IP Address:</strong> {{ service.ip_address }}</li>
+                    <li><strong>Control Panel:</strong> {{ service.control_panel }}</li>
+                    <li><strong>Next Due Date:</strong> {{ service.next_due_date|date:'m-d-y' }}</li>
+                </ul>
+                {% if order.product.type == 'web' and w.data.url %}
+                    <a href="{{ w.data.url }}" target="_blank" class="ka_button small_button small_tealgrey">
+                        Login to cPanel
+                    </a>
+                {% endif %}
+            </div>
+            <div class="tt-icon-box">
+                <h3>Operating System</h3>
+                {{ service.os }}
+                <br/>
+                <img src="{% static os_image %}"/>
+            </div>
+        </div>
+        <div class="one_half_last tt-column">
+            <div class="tt-icon-box">
+                <h2>Product Information</h2>
+                <ul class="no-bullets">
+                    <li>{{ product.description|linebreaks }}</li>
+                </ul>
+            </div>
+            <div class="tt-icon-box">
+                <h3>Additional IP Address(es) [{{ service.additional_ips }}]</h3>
+                {{ service.additional_ips_list|linebreaks }}
+            </div>
+        </div>
+    </div>
+
+    {% if operations %}
+        <div class="row">
+            <div class="one_half tt-column">
+                <div class="tt-icon-box">
+                    <h3>Server Information</h3>
+                    {% if svm_info %}
+                        <strong>Storage Usage:</strong>
+                        {{ svm_info.hdd.1|format_data_size }} / {{ svm_info.hdd.0|format_data_size }}
+                        <br/>
+                        <strong>Bandwidth Usage:</strong>
+                        {{ svm_info.bw.1|format_data_size }} / {{ svm_info.bw.0|format_data_size }}
+                    {% else %}
+                        <div class="karma_notify message_blue" style="font-size: 13px;">
+                            <p>No information available</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="one_half_last tt-column">
+                <div class="tt-icon-box">
+                    <h3>Server Operations</h3>
+                    <form method="post">
+                        {{ form.hidden }}
+                        {% csrf_token %}
+                        <button name='reboot' class="ka_button small_button small_alphagreen">Reboot</button>
+                        <button name="boot" class="ka_button small_button small_coolblue">Boot</button>
+                        <button name="shut_down" class="ka_button small_button small_buoyred">Shut Down</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="row">
+        <div class="one_half tt-column">
+            {% for addon in order.addons.all %}
+                <div class="tt-icon-box">
+                    <strong>Addon Name: </strong><span class="smalltext">{{ addon.name }}</span> |
+                    <strong>Addon Price: </strong><span class="smalltext">${{ addon.price }}</span>
+                </div>
+            {% empty %}
+                <div class="tt-icon-box">
+                    <div class="karma_notify message_blue" style="font-size: 13px;">
+                        <p>No addons ordered</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock content %}
+
+{% block javascript %}
+    {{ block.super }}
+{% endblock javascript %}
