@@ -1,5 +1,5 @@
 # PuroxyIO
-PuroxyIO is a site and interface built in Django/Python. You may find images, features, and technologies used below. We have decided to release this software for educational purposes. We believe it is best used for this. We have built this system from scratch and have run numerous tests and quirks to put the finishing touches on it. This is the first main initial release.
+PuroxyIO is a site and interface built in Django/Python. You may find images, features, and technologies used below. We have decided to release this software for educational purposes. We believe it is best used for this. We have built this system from scratch and have run numerous tests and quirks to put the finishing touches on it. This is the first main initial release. You can view the current, running site at www.puroxy.io.
 
 ### Features
 - Everything can be controlled from the Django Admin itself, no need to dive into the code to add products/configurations unless you want to tweak it further
